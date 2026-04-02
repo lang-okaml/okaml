@@ -1,0 +1,23 @@
+name: okaml
+
+somelist {
+	key: value
+	pair: true
+	sub_lists { 
+		sub_sublists {
+		isSubSub: true
+		foo: false
+		bar: 123
+		baz: 1204
+		}
+	}
+}
+
+multi_line: ``` Hello
+World
+This
+is
+a multiline ```
+
+isBad  : false
+isNull : null
