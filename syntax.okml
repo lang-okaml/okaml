@@ -13,5 +13,11 @@ somelist {
 	}
 }
 
+multi_line: ```
+this
+is
+multi_line
+```
+
 isBad  : false
 isNull : null

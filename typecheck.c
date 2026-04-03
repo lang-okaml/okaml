@@ -3,15 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdlib.h>
-
-typedef struct okml {
-  char* key;
-  char* val_string;
-  int val_int;
-  bool val_bool;
-  int size;
-  struct okml* sub_list;
-} okml;
+#include "okml.h"
 
 void remove_whitespace(char *str) {
     char *read = str;
@@ -52,6 +44,7 @@ void parse_line(okml* node, const char* line) {
         node->val_bool = true;
         node->val_string = NULL;
         node->val_int = 0;
+	node->type="bool";
         free(trimmed);
         return;
     }
@@ -59,6 +52,7 @@ void parse_line(okml* node, const char* line) {
         node->val_bool = false;
         node->val_string = NULL;
         node->val_int = 0;
+	node->type="bool";
         free(trimmed);
         return;
     }
@@ -68,6 +62,7 @@ void parse_line(okml* node, const char* line) {
         node->val_int = trimmed[0] - '0';
         node->val_string = NULL;
         node->val_bool = false;
+	node->type = "int";
         free(trimmed);
         return;
     }
@@ -85,6 +80,7 @@ void parse_line(okml* node, const char* line) {
         node->val_int = atoi(trimmed);
         node->val_string = NULL;
         node->val_bool = false;
+	node->type="int";
         free(trimmed);
         return;
     }
@@ -94,4 +90,5 @@ void parse_line(okml* node, const char* line) {
     node->val_string = trimmed; // trimmed will be freed elsewhere
     node->val_int = 0;
     node->val_bool = false;
+    node->type="string";
 }
