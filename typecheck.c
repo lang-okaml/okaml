@@ -69,7 +69,7 @@ void parse_line(okml* node, const char* line) {
     
     // Check for number (multiple digits)
     bool is_number = true;
-    for (int i = 0; i < strlen(trimmed); i++) {
+    for (size_t i = 0; i < strlen(trimmed); i++) {
         if (!isdigit(trimmed[i])) {
             is_number = false;
             break;
