@@ -9,7 +9,7 @@ bool find_key_value(char* line, okml_array* arr){
     
   bool found = false;
   int len = strlen(line);
-  char* ss = malloc(sizeof(char) * len);
+  char* ss = malloc(sizeof(char) * (len + 1));
 
   okml* parsed_data = okml_create_node();
 
@@ -18,6 +18,7 @@ bool find_key_value(char* line, okml_array* arr){
     if(line[i] == ':'){
       found = true;
       strncpy(ss, line, i);
+      ss[i] = '\0';
       char* key = (strdup(ss));
 
       remove_whitespace(key);

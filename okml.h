@@ -45,4 +45,7 @@ void okml_add_child(okml* parent, okml* child);
 void remove_whitespace(char *str);
 void parse_line(okml* node, const char* line);
 
+/* OKML Functions */
+okml_array* okml_load(char* filename);
+void okml_find(okml_array* arr, char* key);
 #endif // OKML_H

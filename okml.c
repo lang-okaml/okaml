@@ -1,3 +1,4 @@
+
 // okml.c
 #include "okml.h"
 #include <stdlib.h>
@@ -66,8 +67,6 @@ void okml_free_node(okml* node) {
     free(node->key);
     free(node->type);
     free(node->val_string);
-    /* free(node->child_list); */
-    
     free(node);
 }
 
