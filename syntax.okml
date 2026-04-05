@@ -7,20 +7,10 @@ somelist {
 		sub_sublists {
 		isSubSub: yes
 		foo: false
-		bar: 123
-		baz: 1204
 		}
 	}
-}
-
-foolist{
-	bar{
-		baz: bar
-	}
-
-	boo{
-		boora
-		}
+	bar: 123
+	baz: 1204
 }
 
 multi_line: ```

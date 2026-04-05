@@ -39,9 +39,12 @@ char* okml_find(okml_array* arr,  char* key){
     if (!it) continue;
 
     if (it->key && strcmp(it->key, key) == 0) {
+      if(it->val_string == NULL && it->child_list != NULL){
+	fprintf(stderr, "Key %s has a list as a value\n", key);
+	exit(-1);
+      }
       char* rc = strdup(it->val_string);
-      printf("[FOUND] %s\n", rc);
-	return rc;
+      return rc;
     }
     if (it->val_string == NULL && it->child_list != NULL) {
       char* rc = okml_find(it->child_list, key);
@@ -54,8 +57,7 @@ char* okml_find(okml_array* arr,  char* key){
   return NULL;
 }
 
-
-
+/* SOME DRIVER CODE */
 int main(int argc, char *argv[])
 {
 
@@ -64,11 +66,8 @@ int main(int argc, char *argv[])
   } 
 
   okml_array* okml = okml_load(argv[1]);
-  char* rc = okml_find(okml, "this_has");
+  char* rc = okml_find(okml, "bruschetta");
   printf("[RETURN] %s\n",rc );
-  rc = okml_find(okml, "baz");
-  printf("[RETURN] %s\n",rc );
-  free(rc);
   return 0;
 }
 

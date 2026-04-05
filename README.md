@@ -1,8 +1,12 @@
 # OKAML
 
 okaml is a language a markup language i made out of frustration of using json and yaml, I have used HUML but i feel like language with indendations is made for people who can't read through braces.  
+and such is OKAML has born,  
 
-and such is OKAML has born, you can look at the [syntax.okml](syntax.okml) file to go through how the language is written, and this is basic parser which prints to stdout  
+![Syntax example](carbon.png)
+
+this example is @ [syntax.okml](syntax.okml)  
+This repo has a driver code to test the library  
 
 LLM Disclaimer: LLM Generated Code was used in the project, but only for a couple helper functions -> [helpers.c](helpers.c)
 
