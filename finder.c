@@ -40,7 +40,6 @@ FILE* find_child(FILE* file, okml_array* root, char* key) {
   okml* parsed_data = okml_create_node();
   parsed_data->child_list=child_list;
   parsed_data->key=key;
-  parsed_data->type="list";
   okml_array_push(root, parsed_data);
   
   /* Read the File line by line */

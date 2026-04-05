@@ -5,30 +5,6 @@
 #include "finder.c"
 #include "okml.h"
 
-
-
-void print_tree(okml_array* arr, int x){
-  int N = arr->count;
-  for (int i = 0; i < N; ++i) {
-    okml* cur = arr->items[i];
-    if(cur == NULL){
-      return;
-    }
-
-    if(cur->key == NULL){
-      return;
-    }
-    for(int i =0; i<=x;i++){
-      printf("\t");
-    }
-    printf("key %s | type %s\n", cur->key, cur->type);
-    if(cur->type != NULL && strcmp(cur->type, "list") == 0){
-      print_tree(cur->child_list, x+1);
-    }
-  }
-  printf("\n");
-}
-
 okml_array* okml_load(char* filename){
   okml_array* arr = okml_array_create();
   FILE* file = fopen(filename, "r");
@@ -55,28 +31,27 @@ okml_array* okml_load(char* filename){
   return arr;
 }
 
-void okml_find(okml_array* arr,  char* key){
-  if (!arr || !arr->items) return;
+char* okml_find(okml_array* arr,  char* key){
+  if (!arr || !arr->items) exit(-1);
   int N = arr->count;
   for (int i = 0; i < N; ++i) {
     okml *it = arr->items[i];
     if (!it) continue;
 
     if (it->key && strcmp(it->key, key) == 0) {
-      if (it->type && strcmp(it->type, "string") == 0 && it->val_string) {
-        printf("%s\n", it->val_string);
-      } else if (it->type && strcmp(it->type, "bool") == 0) {
-        printf("%s\n", it->val_bool ? "true" : "false");
-      } else if (it->type && strcmp(it->type, "int") == 0) {
-        printf("%d\n", it->val_int);
-      }
-      return;
+      char* rc = strdup(it->val_string);
+      printf("[FOUND] %s\n", rc);
+	return rc;
     }
-
-    if (it->type && strcmp(it->type, "list") == 0 && it->child_list) {
-      okml_find(it->child_list, key);
+    if (it->val_string == NULL && it->child_list != NULL) {
+      char* rc = okml_find(it->child_list, key);
+      if(rc != NULL){
+	return rc;
+      }
     }
   }
+  
+  return NULL;
 }
 
 
@@ -89,8 +64,11 @@ int main(int argc, char *argv[])
   } 
 
   okml_array* okml = okml_load(argv[1]);
-  okml_find(okml, "this_has");
-  okml_find(okml, "baz");
+  char* rc = okml_find(okml, "this_has");
+  printf("[RETURN] %s\n",rc );
+  rc = okml_find(okml, "baz");
+  printf("[RETURN] %s\n",rc );
+  free(rc);
   return 0;
 }
 

@@ -65,7 +65,6 @@ void okml_free_node(okml* node) {
     if (!node) return;
     
     free(node->key);
-    free(node->type);
     free(node->val_string);
     free(node);
 }

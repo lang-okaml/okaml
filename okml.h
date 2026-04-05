@@ -19,11 +19,7 @@ typedef struct {
 
 typedef struct okml {
     char* key;
-    char* type;
-    
     char* val_string;
-    int val_int;
-    bool val_bool;
     okml_array* child_list;
 } okml;
 
@@ -47,5 +43,5 @@ void parse_line(okml* node, const char* line);
 
 /* OKML Functions */
 okml_array* okml_load(char* filename);
-void okml_find(okml_array* arr, char* key);
+char* okml_find(okml_array* arr, char* key);
 #endif // OKML_H
