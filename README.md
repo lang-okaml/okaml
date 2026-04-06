@@ -1,6 +1,7 @@
 # OKAML
 
-okaml is a language a markup language i made out of frustration of using json and yaml, I have used HUML but i feel like language with indendations is made for people who can't read through braces.  
+okaml is a markup language, i made out of frustration of yaml,  
+I have used HUML but i feel like language with indendations is made for people who can't read through braces.  
 and such is OKAML has born,  
 
 ![Syntax example](carbon.png)  
